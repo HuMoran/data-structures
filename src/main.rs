@@ -2,8 +2,10 @@ mod list;
 mod parse;
 mod queue;
 mod stack;
+mod vec;
 use parse::parse_u32;
 use stack::Stack;
+use vec::Vec;
 
 use crate::list::List;
 
@@ -43,4 +45,12 @@ fn main() {
     for v in list.iter() {
         println!("list: {}", v);
     }
+
+    let mut v = Vec::new();
+    v.push(1);
+    v.push(2);
+    v.push(3);
+    v.push(4);
+
+    println!("vec: {:?}", v);
 }
