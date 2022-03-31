@@ -53,4 +53,6 @@ fn main() {
     v.push(4);
 
     println!("vec: {:?}", v);
+    v.remove(2);
+    println!("vec: {:?}", v.to_string());
 }

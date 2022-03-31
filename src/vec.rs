@@ -20,7 +20,7 @@ pub struct Vec<T> {
     head: Link<T>,
 }
 
-impl<T: Debug> Vec<T> {
+impl<T: Copy + Debug> Vec<T> {
     pub fn new() -> Self {
         Vec {
             size: 0,
@@ -33,32 +33,83 @@ impl<T: Debug> Vec<T> {
         if self.is_empty() {
             self.head = Some(Box::new(node));
         } else {
-            let mut n = &mut self.head;
-            while let Some(v) = n {
-                println!("vec data:{:?} {:?}", v.data, v.next.is_none());
+            let mut cur = self.head.as_mut();
+            while let Some(v) = cur {
                 if v.next.is_none() {
                     v.next = Some(Box::new(node));
                     break;
                 }
-                n = &mut v.next;
+                cur = v.next.as_mut();
             }
         }
         self.size += 1;
     }
 
-    // pub fn pop(&self) -> Option<T> {}
+    pub fn insert(&mut self, mut index: usize, data: T) {
+        if index > self.size {
+            index = self.size
+        }
+        let mut node = Box::new(Node::new(data));
+
+        if self.is_empty() {
+            self.head = Some(node);
+        } else {
+            let mut cur = self.head.as_mut().unwrap();
+            for _i in 0..index - 1 {
+                cur = cur.next.as_mut().unwrap();
+            }
+            node.next = cur.next.take();
+            cur.next = Some(node);
+        }
+        self.size += 1;
+    }
+
+    pub fn pop(&mut self) -> Option<T> {
+        self.remove(self.size - 1)
+    }
 
     pub fn is_empty(&self) -> bool {
         self.size == 0
     }
 
-    pub fn size(&self) -> usize {
+    pub fn len(&self) -> usize {
         self.size
     }
 
     // pub fn find(&self, data: T) -> bool {}
 
-    // pub fn insert() {}
+    pub fn remove(&mut self, index: usize) -> Option<T> {
+        if index >= self.size {
+            return None;
+        }
 
-    // pub fn remove() -> Option<T> {}
+        let node;
+        if index == 0 {
+            node = self.head.take().unwrap();
+            self.head = node.next;
+        } else {
+            let mut cur = self.head.as_mut().unwrap();
+            for _i in 0..index - 1 {
+                cur = cur.next.as_mut().unwrap();
+            }
+            node = cur.next.take().unwrap();
+            cur.next = node.next;
+        }
+        self.size -= 1;
+
+        Some(node.data)
+    }
+}
+
+impl<T: ToString+Debug> ToString for Vec<T> {
+    fn to_string(&self) -> String {
+        let mut result = String::from("");
+        let mut cur = self.head.as_ref();
+        while let Some(node) = cur {
+            result += &node.data.to_string();
+            result += ",";
+            cur = node.next.as_ref();
+        }
+        result
+    }
 }
