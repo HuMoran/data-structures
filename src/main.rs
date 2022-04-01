@@ -3,9 +3,11 @@ mod parse;
 mod queue;
 mod stack;
 mod vec;
+mod num2str;
 use parse::parse_u32;
 use stack::Stack;
 use vec::Vec;
+use num2str::num2str;
 
 use crate::list::List;
 
@@ -55,4 +57,6 @@ fn main() {
     println!("vec: {:?}", v);
     v.remove(2);
     println!("vec: {:?}", v.to_string());
+
+    println!("num2str: 255 to base16 is 0x{}", num2str(255, 16));
 }
