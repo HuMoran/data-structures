@@ -4,6 +4,7 @@ mod queue;
 mod stack;
 mod vec;
 mod num2str;
+mod search;
 use parse::parse_u32;
 use stack::Stack;
 use vec::Vec;
@@ -59,4 +60,8 @@ fn main() {
     println!("vec: {:?}", v.to_string());
 
     println!("num2str: 255 to base16 is 0x{}", num2str(255, 16));
+
+    let numbers = [1,3,8,10,15,32,44,48,50,55,60,62,64];
+    let result = search::binary_search(50, &numbers);
+    println!("50 is in numbers: {}", result);
 }
