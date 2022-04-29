@@ -64,4 +64,6 @@ fn main() {
     let numbers = [1,3,8,10,15,32,44,48,50,55,60,62,64];
     let result = search::binary_search(50, &numbers);
     println!("50 is in numbers: {}", result);
+    let result = search::binary_search_recursion(40, &numbers);
+    println!("40 is in numbers: {}", result);
 }

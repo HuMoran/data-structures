@@ -17,3 +17,19 @@ pub fn binary_search(target: i32, numbers: &[i32]) -> bool {
 
     found
 }
+
+pub fn binary_search_recursion(target: i32, numbers: &[i32]) -> bool {
+    if numbers.len() == 0 {
+        return false;
+    }
+
+    let mid = numbers.len() >> 1;
+
+    if numbers[mid] == target {
+        return true;
+    } else if numbers[mid] > target {
+        return binary_search_recursion(target, &numbers[..mid]);
+    } else {
+        return binary_search_recursion(target, &numbers[mid + 1..]);
+    }
+}
