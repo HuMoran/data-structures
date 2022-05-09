@@ -101,7 +101,7 @@ impl<T: Copy + Debug> Vec<T> {
     }
 }
 
-impl<T: ToString+Debug> ToString for Vec<T> {
+impl<T: ToString + Debug> ToString for Vec<T> {
     fn to_string(&self) -> String {
         let mut result = String::from("");
         let mut cur = self.head.as_ref();

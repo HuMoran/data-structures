@@ -1,14 +1,14 @@
 mod list;
+mod num2str;
 mod parse;
 mod queue;
+mod search;
 mod stack;
 mod vec;
-mod num2str;
-mod search;
+use num2str::num2str;
 use parse::parse_u32;
 use stack::Stack;
 use vec::Vec;
-use num2str::num2str;
 
 use crate::list::List;
 
@@ -61,9 +61,13 @@ fn main() {
 
     println!("num2str: 255 to base16 is 0x{}", num2str(255, 16));
 
-    let numbers = [1,3,8,10,15,32,44,48,50,55,60,62,64];
+    let numbers = [1, 3, 8, 10, 15, 32, 44, 48, 50, 55, 60, 62, 64];
     let result = search::binary_search(50, &numbers);
     println!("50 is in numbers: {}", result);
     let result = search::binary_search_recursion(40, &numbers);
     println!("40 is in numbers: {}", result);
+    let numbers = [1, 9, 10, 15, 16, 17, 19, 23, 27, 28, 29, 30, 32, 35];
+    let target = 17;
+    let found = search::interpolation_search(target, &numbers);
+    println!("{target} is in numbers: {found}");
 }
