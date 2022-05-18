@@ -70,4 +70,9 @@ fn main() {
     let target = 17;
     let found = search::interpolation_search(target, &numbers);
     println!("{target} is in numbers: {found}");
+
+    let numbers = [1, 9, 10, 15, 16, 17, 19, 23, 27, 28, 29, 30, 32, 35];
+    let target = 27;
+    let found = search::exponential_search(target, &numbers);
+    println!("{target} is in numbers: {found}");
 }

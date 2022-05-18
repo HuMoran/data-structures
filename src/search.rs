@@ -60,3 +60,18 @@ pub fn interpolation_search(target: i32, numbers: &[i32]) -> bool {
         }
     }
 }
+
+pub fn exponential_search(target: i32, numbers: &[i32]) -> bool {
+    let size = numbers.len();
+    if size == 0 {
+        return false;
+    }
+
+    let mut high = 1;
+    while high < size && numbers[high] < target {
+        high <<= 1;
+    }
+
+    let low = high >> 1;
+    binary_search(target, &numbers[low..size.min(high + 1)])
+}
