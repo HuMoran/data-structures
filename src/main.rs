@@ -3,6 +3,7 @@ mod num2str;
 mod parse;
 mod queue;
 mod search;
+mod sort;
 mod stack;
 mod vec;
 use num2str::num2str;
@@ -75,4 +76,12 @@ fn main() {
     let target = 27;
     let found = search::exponential_search(target, &numbers);
     println!("{target} is in numbers: {found}");
+
+    let mut numbers = [54, 32, 99, 18, 75, 31, 43, 56, 21];
+    sort::insertion_sort(&mut numbers);
+    println!("insertion_sort numbers: {:?}", numbers);
+
+    let mut numbers = [54, 32, 99, 18, 75, 31, 43, 56, 21, 22];
+    sort::shell_sort(&mut numbers);
+    println!("shell_sort numbers: {:?}", numbers);
 }
