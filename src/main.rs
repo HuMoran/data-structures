@@ -84,4 +84,8 @@ fn main() {
     let mut numbers = [54, 32, 99, 18, 75, 31, 43, 56, 21, 22];
     sort::shell_sort(&mut numbers);
     println!("shell_sort numbers: {:?}", numbers);
+
+    let mut numbers = [54, 32, 99, 18, 75, 31, 43, 56, 21, 22];
+    sort::merge_sort(&mut numbers);
+    println!("merge_sort numbers: {:?}", numbers);
 }
